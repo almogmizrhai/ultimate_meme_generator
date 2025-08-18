@@ -1,0 +1,15 @@
+:root {
+    /* pallet */
+    --clr-primary-base: #FFE7E7;
+    --clr-primary-1: #ADB8D6;
+    --clr-primary-2: #333;
+    --clr-primary-3: #FFF;
+
+    --clr-secondary-1: #B9CBE1;
+    --clr-secondary-2: #DDD7E5;
+
+    /* mq */
+    --s: 600px;
+    --m: 900px;
+    --l: 1200px;
+}

@@ -1,0 +1,12 @@
+/* cagliostro */
+
+@font-face {
+    font-family: 'Cagliostro';
+    src: url('Fonts/Cagliostro/Cagliostro-Regular.ttf');
+}
+
+/* italiana */
+@font-face {
+    font-family: 'Italiana';
+    src: url('Fonts/Italiana/Italiana-Regular.ttf');
+}

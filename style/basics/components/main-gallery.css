@@ -1,0 +1,22 @@
+/* main gallery */
+.gallery-container {
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.gallery-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.gallery-container img:hover {
+    transform: scale(1.05);
+    border-color: var(--clr-primary-1); 
+}

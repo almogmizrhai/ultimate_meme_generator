@@ -1,0 +1,20 @@
+/* small 600px */
+@media(min-width: 640px){
+    .main-layout{
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--s)) minmax(16px, 1fr);
+    }
+}
+
+/* medium 890px */
+@media(min-width: 930px){
+    .main-layout{
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--m)) minmax(16px, 1fr);
+    }
+}
+
+/* large 1060px */
+@media(min-width: 1100px){
+    .main-layout{
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--l)) minmax(16px, 1fr);
+    }
+}

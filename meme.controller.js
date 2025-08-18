@@ -5,7 +5,7 @@
 function renderGallery() {
     const elGallery = document.querySelector('.gallery-container')
 
-    const imgsHTML = gImgs.slice(0, 10) 
+    const imgsHTML = gImgs
         .map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})" alt="meme image">`)
         .join('')
 
@@ -15,8 +15,8 @@ function renderGallery() {
 function onImgSelect(imgId) {
     setImg(imgId) 
 
-    document.querySelector('.gallery-container').style.display = 'none'
-    document.querySelector('.meme-editor').style.display = 'block'
+    document.querySelector('.gallery-container').classList.add('hide')
+    document.querySelector('.meme-container').classList.remove('hide')
 
     renderMeme()
 }

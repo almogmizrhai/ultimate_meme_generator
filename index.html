@@ -4,20 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Meme Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/styles.css">
 </head>
-<body onload="onInit()">
-    <header>
-        <h1>Meme Generator</h1>
+<body class="root main-layout" onload="onInit()">
+    <header class="main-header flex align-center space-between">
+        <h1 class="logo">Meme Generator</h1>
+        <nav class="main-nav">
+            <ul class="flex clean-list">
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#meme-editor">Editor</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="gallery-container">
+    <section class="gallery-container flex">
         
     </section>
 
-    <section class="meme-editor" style="display:none;">
-        <input type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
-        <canvas id="meme-canvas" width="500" height="500"></canvas>
+    <section class="meme-container grid align-center hide" >
+
+        <div class="meme-preview"> 
+            <canvas id="meme-canvas" width="500" height="500"></canvas>
+        </div>
+
+        <div class="meme-editor direction flex">
+            <div class="meme-controls direction flex">
+                <input type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
+                <button class="btn" onclick="onAddLine()">Add Line</button>
+                <button class="btn" onclick="onDeleteLine()">Delete Line</button>
+            </div>
+            
+            <div class="meme-actions flex">
+                <button class="btn" onclick="onDownloadMeme()">Download</button>
+                <button class="btn" onclick="onShareMeme()">Share</button>
+            </div>
+        </div>
+
     </section>
 
     <footer>

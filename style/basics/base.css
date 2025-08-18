@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Cagliostro, 'Cagliostro', sans-serif;
+    background-color: var(--clr-primary-3); 
+    color: var(--clr-primary-2);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem; /* 14px */
+}
+
+a{
+    color: var(--clr-primary-2);
+}
+
+a:hover{
+    text-decoration: none;
+}
