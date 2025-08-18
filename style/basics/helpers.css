@@ -41,6 +41,13 @@ a.btn {
     text-decoration: none;
 }
 
+.icons {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    pointer-events: none; 
+}
+
 
 /* display */
 .hide {

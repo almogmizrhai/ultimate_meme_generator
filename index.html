@@ -31,15 +31,34 @@
             <div class="meme-controls direction flex">
                 <input type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
                 <div class="line-controls flex">
+                    <button class="btn" onclick="onSwitchLine()">⬆⬇</button>
                     <button class="btn" onclick="onAddLine()">＋</button>
                     <button class="btn" onclick="onDeleteLine()">🗑</button>
                 </div>
                 <div class="text-controls flex">
                     <button class="btn" onclick="onChangeFontSize()">A+</button>
                     <button class="btn" onclick="onChangeFontSize(false)">A-</button>
-                    <button class="btn" onclick="onAlignText('left')">⬅</button>
-                    <button class="btn" onclick="onAlignText('center')">⬍</button>
-                    <button class="btn" onclick="onAlignText('right')">➡</button>
+                    <button class="btn" onclick="onAlignText('left')">
+                        <img class="icons" src="icons/align-left.png" alt="Align Left">
+                    </button>
+                    <button class="btn" onclick="onAlignText('center')">
+                        <img class="icons" src="icons/align-center.png" alt="Align Center">
+                    </button>
+                    <button class="btn" onclick="onAlignText('right')">
+                        <img class="icons" src="icons/align-right.png" alt="Align Right">
+                    </button>
+                    <select class="font-select" onchange="onSetFont(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Courier New">Courier New</option>
+                    </select>
+                    <label>Fill
+                        <input type="color" placeholder="Fill Color" onchange="onSetFillColor(this.value)">
+                    </label>
+                    <label>Stroke
+                        <input type="color" onchange="onSetStrokeColor(this.value)">
+                    </label>
                 </div>
             </div>
             

@@ -65,3 +65,14 @@ function onDownloadMeme(elLink){
     elLink.href = dataUrl 
     console.log('Downloading meme...')
 }
+
+function onSwitchLine() { console.log('Switch line') }
+function onAddLine() { console.log('Add line') }
+function onDeleteLine() { console.log('Delete line') }
+
+function onChangeFontSize(diff) { console.log('Font size change:', diff) }
+function onAlignText(align) { console.log('Align text:', align) }
+
+function onSetFillColor(color) { console.log('Fill color:', color) }
+function onSetStrokeColor(color) { console.log('Stroke color:', color) }
+function onSetFont(font) { console.log('Font:', font) }

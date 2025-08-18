@@ -1,12 +1,12 @@
 /* meme container */
 .meme-container {
     grid-template-columns: 1fr 1fr; 
-    padding: 30px;
+    padding: 15px;
     background-color: var(--clr-secondary-2);
     border-radius: 12px;
     box-shadow: 0 4px 10px var(--clr-primary-2);
     margin: 20px auto;
-    max-width: 800px; 
+    max-width: 950px; 
     gap: 20px; 
 }
 
@@ -34,9 +34,11 @@ canvas#meme-canvas {
 
 /* meme editor */
 .meme-editor {
+    padding: 10px;
     background-color: var(--clr-primary-base);
     border-radius: inherit;
     justify-content: space-evenly;
+    overflow: hidden; 
 }
 
 .meme-preview{
@@ -49,6 +51,28 @@ canvas#meme-canvas {
 .meme-controls{
     gap: 10px;
     align-items: center;
+}
+
+.line-controls{
+    gap: 10px;
+    align-items: center;
+}
+
+.text-controls {
+    display: grid;
+    gap: 10px;
+    align-items: center;
+    border-radius: 30px;
+    background-color: var(--clr-primary-3);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 10px;
+}
+
+.font-select{
+    display: grid;
+    grid-column: 1 / -3;
+    border-radius: inherit;
+    border-color: var(--clr-primary-1);
 }
 
 .meme-actions {
