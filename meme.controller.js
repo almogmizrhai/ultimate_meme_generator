@@ -5,7 +5,7 @@
 function renderGallery() {
     const elGallery = document.querySelector('.gallery-container')
 
-    const imgsHTML = gImgs.slice(0, 2) 
+    const imgsHTML = gImgs.slice(0, 10) 
         .map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})" alt="meme image">`)
         .join('')
 
@@ -37,7 +37,7 @@ function renderMeme() {
     img.src = imgObj.url
 
     img.onload = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height) // נקה את ה-canvas לפני הציור
+        ctx.clearRect(0, 0, canvas.width, canvas.height) 
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
         meme.lines.forEach((line, idx) => {
