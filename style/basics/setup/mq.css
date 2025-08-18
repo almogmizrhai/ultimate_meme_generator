@@ -1,3 +1,10 @@
+/* mobile only */
+@media(max-width:640px){
+    .meme-container{
+        grid-template-columns: 1fr;
+    }
+}
+
 /* small 600px */
 @media(min-width: 640px){
     .main-layout{
@@ -10,11 +17,17 @@
     .main-layout{
         grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--m)) minmax(16px, 1fr);
     }
+    .meme-container{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 /* large 1060px */
 @media(min-width: 1100px){
     .main-layout{
         grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--l)) minmax(16px, 1fr);
+    }
+    .meme-container{
+        grid-template-columns: 1fr 1fr;
     }
 }

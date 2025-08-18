@@ -58,3 +58,10 @@ function onSetLineTxt(newTxt) {
     setLineTxt(newTxt)  
     renderMeme()         
 }
+
+function onDownloadMeme(elLink){
+    const elCanvas = document.querySelector('#meme-canvas')
+    const dataUrl = elCanvas.toDataURL("image/png")
+    elLink.href = dataUrl 
+    console.log('Downloading meme...')
+}

@@ -12,7 +12,7 @@
         <nav class="main-nav">
             <ul class="flex clean-list">
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#meme-editor">Editor</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
         </nav>
     </header>
@@ -30,12 +30,21 @@
         <div class="meme-editor direction flex">
             <div class="meme-controls direction flex">
                 <input type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
-                <button class="btn" onclick="onAddLine()">Add Line</button>
-                <button class="btn" onclick="onDeleteLine()">Delete Line</button>
+                <div class="line-controls flex">
+                    <button class="btn" onclick="onAddLine()">＋</button>
+                    <button class="btn" onclick="onDeleteLine()">🗑</button>
+                </div>
+                <div class="text-controls flex">
+                    <button class="btn" onclick="onChangeFontSize()">A+</button>
+                    <button class="btn" onclick="onChangeFontSize(false)">A-</button>
+                    <button class="btn" onclick="onAlignText('left')">⬅</button>
+                    <button class="btn" onclick="onAlignText('center')">⬍</button>
+                    <button class="btn" onclick="onAlignText('right')">➡</button>
+                </div>
             </div>
             
             <div class="meme-actions flex">
-                <button class="btn" onclick="onDownloadMeme()">Download</button>
+                <a class="btn" download="my-meme.png" onclick="onDownloadMeme(this)">Download</a>
                 <button class="btn" onclick="onShareMeme()">Share</button>
             </div>
         </div>
