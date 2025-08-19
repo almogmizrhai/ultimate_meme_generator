@@ -41,15 +41,10 @@ function renderMeme() {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
         meme.lines.forEach((line, idx) => {
-            ctx.font = `${line.size}px Impact`
-            ctx.fillStyle = line.color
-            ctx.strokeStyle = 'black'
-            ctx.lineWidth = 2
-            ctx.textAlign = 'center'
-
-            const yPos = 50 + (idx * 40)
-            ctx.fillText(line.txt, canvas.width / 2, yPos)
-            ctx.strokeText(line.txt, canvas.width / 2, yPos)
+            drawText(ctx, line)
+            if (idx === meme.selectedLineIdx) {
+                drawTextBox(ctx, line)
+            }
         })
     }
 }
@@ -66,8 +61,50 @@ function onDownloadMeme(elLink){
     console.log('Downloading meme...')
 }
 
-function onSwitchLine() { console.log('Switch line') }
-function onAddLine() { console.log('Add line') }
+function onAddLine() { 
+    console.log('Add line')
+    addLine()
+    renderMeme()
+}
+
+function onSwitchLine() { 
+    console.log('Switch line') 
+    const meme = getMeme()
+    meme.selectedLineIdx = (meme.selectedLineIdx + 1) % meme.lines.length
+    renderMeme()
+}
+
+function drawTextBox(ctx, line) {
+    ctx.save()
+
+    ctx.font = `${line.size}px Impact`
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+
+    const textMetrics = ctx.measureText(line.txt || 'New line')
+    const padding = 10
+
+    const textWidth = textMetrics.width
+    const ascent = textMetrics.actualBoundingBoxAscent || line.size * 0.8
+    const descent = textMetrics.actualBoundingBoxDescent || line.size * 0.2
+    const textHeight = ascent + descent
+
+    const x = line.x
+    const y = line.y
+
+    ctx.strokeStyle = '#ADB8D6'
+    ctx.lineWidth = 1
+
+    ctx.strokeRect(
+        x - textWidth / 2 - padding,
+        y - ascent - padding,
+        textWidth + padding * 2,
+        textHeight + padding * 2
+    )
+
+    ctx.restore()
+}
+
 function onDeleteLine() { console.log('Delete line') }
 
 function onChangeFontSize(diff) { console.log('Font size change:', diff) }
