@@ -93,7 +93,7 @@ function drawTextBox(ctx, line) {
     const y = line.y
 
     ctx.strokeStyle = '#ADB8D6'
-    ctx.lineWidth = 1
+    ctx.lineWidth = 1.5
 
     ctx.strokeRect(
         x - textWidth / 2 - padding,
