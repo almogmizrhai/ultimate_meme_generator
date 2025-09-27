@@ -62,6 +62,7 @@ function addLine() {
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     renderMeme()
+    console.log(newLine)
 }
 
 function getNewLineY() {

@@ -31,23 +31,23 @@
             <div class="meme-controls direction flex">
                 <input class="input-text" type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
                 <div class="line-controls flex">
-                    <button class="btn" onclick="onSwitchLine()">⬆⬇</button>
-                    <button class="btn" onclick="onAddLine()">＋</button>
-                    <button class="btn" onclick="onDeleteLine()">🗑</button>
+                    <button class="btn" title="Switch Line" onclick="onSwitchLine()">⬆⬇</button>
+                    <button class="btn" title="Add Line" onclick="onAddLine()">＋</button>
+                    <button class="btn" title="Delete Line" onclick="onDeleteLine()">🗑</button>
                 </div>
                 <div class="text-controls flex">
-                    <button class="btn" onclick="onChangeFontSize()">A+</button>
-                    <button class="btn" onclick="onChangeFontSize(false)">A-</button>
-                    <button class="btn" onclick="onAlignText('left')">
+                    <button class="btn" title="Increase Font Size" onclick="onChangeFontSize()">A+</button>
+                    <button class="btn" title="Decrease Font Size" onclick="onChangeFontSize(false)">A-</button>
+                    <button class="btn" title="Align Text Left" onclick="onAlignText('left')">
                         <img class="icons" src="icons/align-left.png" alt="Align Left">
                     </button>
-                    <button class="btn" onclick="onAlignText('center')">
+                    <button class="btn" title="Align Text Center" onclick="onAlignText('center')">
                         <img class="icons" src="icons/align-center.png" alt="Align Center">
                     </button>
-                    <button class="btn" onclick="onAlignText('right')">
+                    <button class="btn" title="Align Text Right" onclick="onAlignText('right')">
                         <img class="icons" src="icons/align-right.png" alt="Align Right">
                     </button>
-                    <select class="font-select" onchange="onSetFont(this.value)">
+                    <select class="font-select" title="Change Font" onchange="onSetFont(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
