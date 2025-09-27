@@ -1,15 +1,56 @@
-
+// controller
 
 'use strict'
+
+
 
 function renderGallery() {
     const elGallery = document.querySelector('.gallery-container')
 
     const imgsHTML = gImgs
-        .map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})" alt="meme image">`)
+        .map((img, idx) => {
+            if (idx === 0) {
+                return `<input type="file" id="file-input" style="display:none" onchange="onUploadImg(event)">
+                <img src="${img.url}" onclick="document.getElementById('file-input').click()" alt="Upload">`
+            } else {
+                return `<img src="${img.url}" onclick="onImgSelect('${img.id}')" alt="meme image">`
+            }
+        })
         .join('')
 
     elGallery.innerHTML = imgsHTML
+}
+
+
+function onUploadImg(ev) {
+
+    if (!ev || !ev.target || !ev.target.files || !ev.target.files[0]) return;
+
+    loadImageFromInput(ev, (img) => {
+        const newImg = addImgFromUrl(img.src) 
+        setImg(newImg.id)
+
+        document.querySelector('.gallery-container').classList.add('hide')
+        document.querySelector('.meme-container').classList.remove('hide')
+
+        renderMeme()
+    })
+}
+
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = (event) => {
+        const img = new Image()
+        img.src = event.target.result
+
+        img.onload = () => {
+            onImageReady(img)
+        }
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
 }
 
 function onImgSelect(imgId) {

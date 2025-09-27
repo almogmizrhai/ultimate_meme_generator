@@ -10,15 +10,18 @@
     .main-layout{
         grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--s)) minmax(16px, 1fr);
     }
+    .meme-container{
+        grid-template-columns: 1fr;
+    }
 }
 
 /* medium 890px */
 @media(min-width: 930px){
     .main-layout{
-        grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--m)) minmax(16px, 1fr);
+        grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--s)) minmax(16px, 1fr);
     }
     .meme-container{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 }
 

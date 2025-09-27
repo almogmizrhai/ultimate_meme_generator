@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Meme Generator</title>
+    <link rel="stylesheet" href="style/styles.css">
+</head>
+<body class="root main-layout" onload="onInit()">
+    <header class="main-header flex align-center space-between full">
+        <h1 class="logo">Meme Generator</h1>
+        <nav class="main-nav">
+            <ul class="flex clean-list">
+                <li><a class="active" href="gallery.html">Gallery</a></li>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="gallery-container flex">
+    
+    </section>
+
+    <section class="meme-container grid align-center hide" >
+
+        <div class="meme-preview"> 
+            <canvas id="meme-canvas" width="500" height="500"></canvas>
+        </div>
+
+        <div class="meme-editor direction flex">
+            <div class="meme-controls direction flex">
+                <input class="input-text" type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
+                <div class="line-controls flex">
+                    <button class="btn" onclick="onSwitchLine()">⬆⬇</button>
+                    <button class="btn" onclick="onAddLine()">＋</button>
+                    <button class="btn" onclick="onDeleteLine()">🗑</button>
+                </div>
+                <div class="text-controls flex">
+                    <button class="btn" onclick="onChangeFontSize()">A+</button>
+                    <button class="btn" onclick="onChangeFontSize(false)">A-</button>
+                    <button class="btn" onclick="onAlignText('left')">
+                        <img class="icons" src="icons/align-left.png" alt="Align Left">
+                    </button>
+                    <button class="btn" onclick="onAlignText('center')">
+                        <img class="icons" src="icons/align-center.png" alt="Align Center">
+                    </button>
+                    <button class="btn" onclick="onAlignText('right')">
+                        <img class="icons" src="icons/align-right.png" alt="Align Right">
+                    </button>
+                    <select class="font-select" onchange="onSetFont(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Courier New">Courier New</option>
+                    </select>
+                    <label>Fill
+                        <input type="color" placeholder="Fill Color" onchange="onSetFillColor(this.value)">
+                    </label>
+                    <label>Stroke
+                        <input type="color" onchange="onSetStrokeColor(this.value)">
+                    </label>
+                </div>
+            </div>
+            
+            <div class="meme-actions flex">
+                <a class="btn" download="my-meme.png" onclick="onDownloadMeme(this)">Download</a>
+                <button class="btn" onclick="onShareMeme()">Share</button>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="footer full">
+        <p>&copy; 2025 Meme Generator. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="utils.js"></script>
+
+    <script src="meme.controller.js"></script>
+    <script src="meme.service.js"></script>
+
+</body>
+</html>

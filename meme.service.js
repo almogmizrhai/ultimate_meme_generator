@@ -1,10 +1,10 @@
-
+// service
 
 'use strict'
 
 
 var gImgs = [...Array(18).keys()].map(i => ({
-    id: i + 1,
+    id: makeId(4),
     url: `img/${i + 1}.jpg`,
     keywords: []
 }))
@@ -71,3 +71,16 @@ function getNewLineY() {
     return gElCanvas.height / 2             // באמצע
 }
 
+function addImgFromUrl(url) {
+    const img = _createImg(url, [])
+    gImgs.push(img)
+    return img 
+}
+
+function _createImg(url, keywords) {
+    return {
+        id: makeId(4),
+        url,
+        keywords
+    }
+}
