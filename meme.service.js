@@ -115,6 +115,20 @@ function deleteLine(meme){
     }
 }
 
+function changeFontSize(diff){
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    if (!line) return
+    line.size += diff
+    if (line.size > 100){
+        console.log('Max font size reached')
+        line.size = 100
+    }
+    if (line.size < 20){
+        console.log('Min font size reached')
+        line.size = 20
+    }
+}
+
 function getNewLineY() {
     const lineCount = gMeme.lines.length
     if (lineCount === 0) return 50          // למעלה

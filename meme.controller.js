@@ -163,8 +163,17 @@ function onDeleteLine() {
 }
 
 
-function onChangeFontSize(diff) { console.log('Font size change:', diff) }
-function onAlignText(align) { console.log('Align text:', align) }
+function onChangeFontSize(diff) { 
+    console.log('Font size change:', diff)
+    changeFontSize(diff)
+    renderMeme()
+}
+
+function onAlignText(align) { 
+    console.log('Align text:', align) 
+    alignText(align)
+    renderMeme()
+}
 
 function onSetFillColor(color) { console.log('Fill color:', color) }
 function onSetStrokeColor(color) { console.log('Stroke color:', color) }
