@@ -169,6 +169,18 @@ function alignText(align) {
     line.align = align
 }
 
+function setFillColor(color) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    if (!line) return
+    line.color = color
+}
+
+function setStrokeColor(color) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    if (!line) return
+    line.strokeColor = color
+}
+
 function addImgFromUrl(url) {
     const img = _createImg(url, [])
     gImgs.push(img)

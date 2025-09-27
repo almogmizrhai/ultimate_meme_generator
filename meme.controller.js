@@ -154,6 +154,16 @@ function onAlignText(align) {
     renderMeme()
 }
 
-function onSetFillColor(color) { console.log('Fill color:', color) }
-function onSetStrokeColor(color) { console.log('Stroke color:', color) }
+function onSetFillColor(color) { 
+    console.log('Fill color:', color)
+    setFillColor(color)
+    renderMeme() 
+}
+
+function onSetStrokeColor(color) { 
+    console.log('Stroke color:', color) 
+    setStrokeColor(color)
+    renderMeme()
+}
+
 function onSetFont(font) { console.log('Font:', font) }
