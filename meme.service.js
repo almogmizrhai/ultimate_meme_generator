@@ -37,6 +37,37 @@ function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
 
+function drawTextBox(ctx, line) {
+    ctx.save()
+
+    ctx.font = `${line.size}px Impact`
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+
+    const textMetrics = ctx.measureText(line.txt || 'New line')
+    const padding = 10
+
+    const textWidth = textMetrics.width
+    const ascent = textMetrics.actualBoundingBoxAscent || line.size * 0.8
+    const descent = textMetrics.actualBoundingBoxDescent || line.size * 0.2
+    const textHeight = ascent + descent
+
+    const x = line.x
+    const y = line.y
+
+    ctx.strokeStyle = '#ADB8D6'
+    ctx.lineWidth = 1.5
+
+    ctx.strokeRect(
+        x - textWidth / 2 - padding,
+        y - ascent - padding,
+        textWidth + padding * 2,
+        textHeight + padding * 2
+    )
+
+    ctx.restore()
+}
+
 function drawText(ctx, line) {
     ctx.font = `${line.size}px Impact`
     ctx.fillStyle = line.color
@@ -63,6 +94,25 @@ function addLine() {
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     renderMeme()
     console.log(newLine)
+}
+
+function deleteLine(meme){
+    if (gMeme.lines.length === 0) return
+    const idx = meme.selectedLineIdx
+    meme.lines.splice(idx, 1)
+
+    if (meme.lines.length === 0) {
+        meme.selectedLineIdx = -1
+    } else if (idx >= meme.lines.length) {
+        meme.selectedLineIdx = meme.lines.length - 1
+    }
+
+    const elInput = document.querySelector('.input-text')
+    if (meme.selectedLineIdx !== -1) {
+        elInput.value = meme.lines[meme.selectedLineIdx].txt
+    } else {
+        elInput.value = ''
+    }
 }
 
 function getNewLineY() {

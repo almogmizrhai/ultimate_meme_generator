@@ -32,8 +32,8 @@ function measureLine(line) {
     ctx.font = `${line.size}px ${line.font || 'Impact'}`
     const metrics = ctx.measureText(line.txt)
     const width = metrics.width
-    const height = (metrics.actualBoundingBoxAscent || line.size * 0.8) +
-                   (metrics.actualBoundingBoxDescent || line.size * 0.2)
+    const height = (metrics.actualBoundingBoxAscent || line.size * 0.8) + (metrics.actualBoundingBoxDescent || line.size * 0.2)
+
     return { width, height }
 }
 
@@ -154,38 +154,14 @@ function onSwitchLine() {
     renderMeme()
 }
 
-function drawTextBox(ctx, line) {
-    ctx.save()
+function onDeleteLine() { 
+    const meme = getMeme()
+    if (meme.lines.length === 0) return
+    deleteLine(meme)
 
-    ctx.font = `${line.size}px Impact`
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-
-    const textMetrics = ctx.measureText(line.txt || 'New line')
-    const padding = 10
-
-    const textWidth = textMetrics.width
-    const ascent = textMetrics.actualBoundingBoxAscent || line.size * 0.8
-    const descent = textMetrics.actualBoundingBoxDescent || line.size * 0.2
-    const textHeight = ascent + descent
-
-    const x = line.x
-    const y = line.y
-
-    ctx.strokeStyle = '#ADB8D6'
-    ctx.lineWidth = 1.5
-
-    ctx.strokeRect(
-        x - textWidth / 2 - padding,
-        y - ascent - padding,
-        textWidth + padding * 2,
-        textHeight + padding * 2
-    )
-
-    ctx.restore()
+    renderMeme()
 }
 
-function onDeleteLine() { console.log('Delete line') }
 
 function onChangeFontSize(diff) { console.log('Font size change:', diff) }
 function onAlignText(align) { console.log('Align text:', align) }
