@@ -37,6 +37,22 @@ function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
 
+// פונקציה שמחזירה את המרחב של הטקסט
+function measureLine(line) {
+    const ctx = gElCanvas.getContext('2d')
+    ctx.font = `${line.size}px ${line.font || 'Impact'}`
+    const metrics = ctx.measureText(line.txt)
+    const width = metrics.width
+    const height = (metrics.actualBoundingBoxAscent || line.size * 0.8) + (metrics.actualBoundingBoxDescent || line.size * 0.2)
+
+    return { width, height }
+}
+
+function updateEditorForLine(line) {
+    const elInput = document.querySelector('.input-text')
+    elInput.value = line.txt || ''
+}
+
 function drawTextBox(ctx, line) {
     ctx.save()
 
@@ -79,7 +95,6 @@ function drawText(ctx, line) {
     ctx.strokeText(line.txt, line.x, line.y)
 }
 
-
 function addLine() {
     document.querySelector('.input-text').value=''
     const yPos = getNewLineY() 
@@ -94,6 +109,13 @@ function addLine() {
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     renderMeme()
     console.log(newLine)
+}
+
+function getNewLineY() {
+    const lineCount = gMeme.lines.length
+    if (lineCount === 0) return 50          // למעלה
+    if (lineCount === 1) return gElCanvas.height - 50 // למטה
+    return gElCanvas.height / 2             // באמצע
 }
 
 function deleteLine(meme){
@@ -129,11 +151,22 @@ function changeFontSize(diff){
     }
 }
 
-function getNewLineY() {
-    const lineCount = gMeme.lines.length
-    if (lineCount === 0) return 50          // למעלה
-    if (lineCount === 1) return gElCanvas.height - 50 // למטה
-    return gElCanvas.height / 2             // באמצע
+function alignText(align) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    if (!line) return
+
+    const textWidth = getTextWidth(line)
+    const padding = 10  // ריווח מהקצה
+
+    if (align === 'left') {
+        line.x = padding + textWidth / 2
+    } else if (align === 'center') {
+        line.x = gElCanvas.width / 2
+    } else if (align === 'right') {
+        line.x = gElCanvas.width - padding - textWidth / 2
+    }
+
+    line.align = align
 }
 
 function addImgFromUrl(url) {

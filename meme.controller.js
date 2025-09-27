@@ -3,46 +3,6 @@
 'use strict'
 
 
-
-function onCanvasClick(ev) {
-    console.log('Canvas clicked at:', ev.offsetX, ev.offsetY)
-    const meme = getMeme()
-    const clickX = ev.offsetX
-    const clickY = ev.offsetY
-
-    const clickedLineIdx = meme.lines.findIndex(line => {
-        const textMetrics = measureLine(line) 
-        const left = line.x - textMetrics.width / 2
-        const right = line.x + textMetrics.width / 2
-        const top = line.y - textMetrics.height / 2
-        const bottom = line.y + textMetrics.height / 2
-        return clickX >= left && clickX <= right && clickY >= top && clickY <= bottom
-    })
-
-    if (clickedLineIdx !== -1) {
-        meme.selectedLineIdx = clickedLineIdx
-        updateEditorForLine(meme.lines[clickedLineIdx])
-        renderMeme()
-    }
-}
-
-// פונקציה שמחזירה את המרחב של הטקסט
-function measureLine(line) {
-    const ctx = gElCanvas.getContext('2d')
-    ctx.font = `${line.size}px ${line.font || 'Impact'}`
-    const metrics = ctx.measureText(line.txt)
-    const width = metrics.width
-    const height = (metrics.actualBoundingBoxAscent || line.size * 0.8) + (metrics.actualBoundingBoxDescent || line.size * 0.2)
-
-    return { width, height }
-}
-
-function updateEditorForLine(line) {
-    const elInput = document.querySelector('.input-text')
-    elInput.value = line.txt || ''
-
-}
-
 function renderGallery() {
     const elGallery = document.querySelector('.gallery-container')
 
@@ -58,47 +18,6 @@ function renderGallery() {
         .join('')
 
     elGallery.innerHTML = imgsHTML
-}
-
-
-function onUploadImg(ev) {
-
-    if (!ev || !ev.target || !ev.target.files || !ev.target.files[0]) return;
-
-    loadImageFromInput(ev, (img) => {
-        const newImg = addImgFromUrl(img.src) 
-        setImg(newImg.id)
-
-        document.querySelector('.gallery-container').classList.add('hide')
-        document.querySelector('.meme-container').classList.remove('hide')
-
-        renderMeme()
-    })
-}
-
-
-function loadImageFromInput(ev, onImageReady) {
-    const reader = new FileReader()
-
-    reader.onload = (event) => {
-        const img = new Image()
-        img.src = event.target.result
-
-        img.onload = () => {
-            onImageReady(img)
-        }
-    }
-
-    reader.readAsDataURL(ev.target.files[0])
-}
-
-function onImgSelect(imgId) {
-    setImg(imgId) 
-
-    document.querySelector('.gallery-container').classList.add('hide')
-    document.querySelector('.meme-container').classList.remove('hide')
-
-    renderMeme()
 }
 
 function renderMeme() {
@@ -127,6 +46,67 @@ function renderMeme() {
             }
         })
     }
+}
+
+function onCanvasClick(ev) {
+    console.log('Canvas clicked at:', ev.offsetX, ev.offsetY)
+    const meme = getMeme()
+    const clickX = ev.offsetX
+    const clickY = ev.offsetY
+
+    const clickedLineIdx = meme.lines.findIndex(line => {
+        const textMetrics = measureLine(line) 
+        const left = line.x - textMetrics.width / 2
+        const right = line.x + textMetrics.width / 2
+        const top = line.y - textMetrics.height / 2
+        const bottom = line.y + textMetrics.height / 2
+        return clickX >= left && clickX <= right && clickY >= top && clickY <= bottom
+    })
+
+    if (clickedLineIdx !== -1) {
+        meme.selectedLineIdx = clickedLineIdx
+        updateEditorForLine(meme.lines[clickedLineIdx])
+        renderMeme()
+    }
+}
+
+function onUploadImg(ev) {
+
+    if (!ev || !ev.target || !ev.target.files || !ev.target.files[0]) return;
+
+    loadImageFromInput(ev, (img) => {
+        const newImg = addImgFromUrl(img.src) 
+        setImg(newImg.id)
+
+        document.querySelector('.gallery-container').classList.add('hide')
+        document.querySelector('.meme-container').classList.remove('hide')
+
+        renderMeme()
+    })
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = (event) => {
+        const img = new Image()
+        img.src = event.target.result
+
+        img.onload = () => {
+            onImageReady(img)
+        }
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function onImgSelect(imgId) {
+    setImg(imgId) 
+
+    document.querySelector('.gallery-container').classList.add('hide')
+    document.querySelector('.meme-container').classList.remove('hide')
+
+    renderMeme()
 }
 
 function onSetLineTxt(newTxt) {
@@ -162,7 +142,6 @@ function onDeleteLine() {
     renderMeme()
 }
 
-
 function onChangeFontSize(diff) { 
     console.log('Font size change:', diff)
     changeFontSize(diff)
@@ -170,7 +149,7 @@ function onChangeFontSize(diff) {
 }
 
 function onAlignText(align) { 
-    console.log('Align text:', align) 
+    console.log('Align text to the:', align) 
     alignText(align)
     renderMeme()
 }
