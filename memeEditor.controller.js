@@ -67,12 +67,6 @@ function onSetLineTxt(newTxt) {
     renderMeme()         
 }
 
-function onDownloadMeme(elLink){
-    const elCanvas = document.querySelector('#meme-canvas')
-    const dataUrl = elCanvas.toDataURL("image/png")
-    elLink.href = dataUrl 
-    console.log('Downloading meme...')
-}
 
 function onAddLine() { 
     console.log('Add line')
@@ -123,4 +117,28 @@ function onSetFont(font) {
     console.log('Font:', font)
     setFont(font)
     renderMeme()
+}
+
+function onDownloadMeme(elLink){
+    const elCanvas = document.querySelector('#meme-canvas')
+    const dataUrl = elCanvas.toDataURL("image/png")
+    elLink.href = dataUrl 
+    console.log('Downloading meme...')
+}
+
+function onShareFacebook(url) {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
+}
+
+function onShareMeme(ev) {
+    ev.preventDefault()
+    const canvasData = gElCanvas.toDataURL('image/jpeg')
+
+    // After a successful upload, allow the user to share on Facebook
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        onShareFacebook(encodedUploadedImgUrl)
+    }
+
+    uploadImg(canvasData, onSuccess)
 }
