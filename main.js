@@ -1,4 +1,4 @@
-
+//main
 
 'use strict'
 
@@ -8,8 +8,17 @@ var gCtx
 
 function onInit() {
     gElCanvas = document.querySelector('#meme-canvas')
-    gCtx = gElCanvas.getContext('2d')
-    gElCanvas.addEventListener('click', onCanvasClick)
+    
+    if (gElCanvas) {
+        gCtx = gElCanvas.getContext('2d')
+        gElCanvas.addEventListener('click', onCanvasClick)
+    }
 
-    renderGallery()
+    if (document.querySelector('.saved-pics')) {
+        renderPics()
+    }
+    
+    if (document.querySelector('.gallery-container')) {
+        renderGallery()
+    }
 }

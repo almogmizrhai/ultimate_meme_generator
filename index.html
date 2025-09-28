@@ -11,8 +11,9 @@
         <h1 class="logo">Meme Generator</h1>
         <nav class="main-nav">
             <ul class="flex clean-list">
-                <li><a href="gallery.html">Gallery</a></li>
                 <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
             </ul>
         </nav>
     </header>
@@ -27,7 +28,7 @@
             <li>Ability to add multiple text lines</li>
             <li>Download and share your creations</li>
         </ul>
-        <p>Get started by visiting the <a href="gallery.html">Gallery</a> to choose a template and start creating!</p>
+        <p>Get started by visiting the <a href="editor.html">Editor</a> to choose a template and start creating!</p>
 
     </section>
 
@@ -35,11 +36,16 @@
         <p>&copy; 2025 Meme Generator. All rights reserved.</p>
     </footer>
 
-    <script src="main.js"></script>
     <script src="utils.js"></script>
-
-    <script src="meme.controller.js"></script>
-    <script src="meme.service.js"></script>
-
+    
+    <script src="upload.service.js"></script>
+    <script src="memeEditor.service.js"></script>
+    <script src="gallery.service.js"></script>
+    
+    <script src="memeEditor.controller.js"></script>
+    <script src="gallery.controller.js"></script>
+    
+    
+    <script src="main.js"></script>
 </body>
 </html>

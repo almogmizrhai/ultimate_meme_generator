@@ -13,7 +13,7 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        { txt: 'New Line', size: 40, color: 'white', x: 250, y: 50 }
+        { txt: 'New Line', size: 40, color: 'white', strokeColor: 'black', font: 'Impact', x: 250, y: 50 }
     ]
 }
 
@@ -85,14 +85,20 @@ function drawTextBox(ctx, line) {
 }
 
 function drawText(ctx, line) {
-    ctx.font = `${line.size}px Impact`
-    ctx.fillStyle = line.color
-    ctx.strokeStyle = 'black'
+    ctx.font = `${line.size}px ${line.font || 'Impact'}`
+    ctx.fillStyle = line.color || 'white'
+    ctx.strokeStyle = line.strokeColor || 'black'
     ctx.lineWidth = 2
-    ctx.textAlign = 'center'
+    ctx.textAlign = line.align || 'center'
 
     ctx.fillText(line.txt, line.x, line.y)
     ctx.strokeText(line.txt, line.x, line.y)
+}
+
+function addImgFromUrl(url) {
+    const img = _createImg(url, [])
+    gImgs.push(img)
+    return img 
 }
 
 function addLine() {
@@ -178,13 +184,14 @@ function setFillColor(color) {
 function setStrokeColor(color) {
     const line = gMeme.lines[gMeme.selectedLineIdx]
     if (!line) return
+    console.log(line)
     line.strokeColor = color
 }
 
-function addImgFromUrl(url) {
-    const img = _createImg(url, [])
-    gImgs.push(img)
-    return img 
+function setFont(font) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    if (!line) return
+    line.font = font
 }
 
 function _createImg(url, keywords) {

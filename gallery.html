@@ -11,74 +11,35 @@
         <h1 class="logo">Meme Generator</h1>
         <nav class="main-nav">
             <ul class="flex clean-list">
-                <li><a class="active" href="gallery.html">Gallery</a></li>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a class="active" href="gallery.html">Gallery</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="gallery-container flex">
+    <section class="flex">
+        <fieldset>
+            <legend>Saved Picture</legend>
+            <div class="saved-pics flex wrap gap"></div>
+        </fieldset>
+    </section>
+
     
-    </section>
-
-    <section class="meme-container grid align-center hide" >
-
-        <div class="meme-preview"> 
-            <canvas id="meme-canvas" width="500" height="500"></canvas>
-        </div>
-
-        <div class="meme-editor direction flex">
-            <div class="meme-controls direction flex">
-                <input class="input-text" type="text" oninput="onSetLineTxt(this.value)" placeholder="Enter meme text">
-                <div class="line-controls flex">
-                    <button class="btn" title="Switch Line" onclick="onSwitchLine()">⬆⬇</button>
-                    <button class="btn" title="Add Line" onclick="onAddLine()">＋</button>
-                    <button class="btn" title="Delete Line" onclick="onDeleteLine()">🗑</button>
-                </div>
-                <div class="text-controls flex">
-                    <button class="btn" title="Increase Font Size" onclick="onChangeFontSize(2)">A+</button>
-                    <button class="btn" title="Decrease Font Size" onclick="onChangeFontSize(-2)">A-</button>
-                    <button class="btn" title="Align Text Left" onclick="onAlignText('left')">
-                        <img class="icons" src="icons/align-left.png" alt="Align Left">
-                    </button>
-                    <button class="btn" title="Align Text Center" onclick="onAlignText('center')">
-                        <img class="icons" src="icons/align-center.png" alt="Align Center">
-                    </button>
-                    <button class="btn" title="Align Text Right" onclick="onAlignText('right')">
-                        <img class="icons" src="icons/align-right.png" alt="Align Right">
-                    </button>
-                    <select class="font-select" title="Change Font" onchange="onSetFont(this.value)">
-                        <option value="Impact">Impact</option>
-                        <option value="Arial">Arial</option>
-                        <option value="Verdana">Verdana</option>
-                        <option value="Courier New">Courier New</option>
-                    </select>
-                    <label>Fill
-                        <input type="color" placeholder="Fill Color" onchange="onSetFillColor(this.value)">
-                    </label>
-                    <label>Stroke
-                        <input type="color" onchange="onSetStrokeColor(this.value)">
-                    </label>
-                </div>
-            </div>
-            
-            <div class="meme-actions flex">
-                <a class="btn" download="my-meme.png" onclick="onDownloadMeme(this)">Download</a>
-                <button class="btn" onclick="onShareMeme()">Share</button>
-            </div>
-        </div>
-
-    </section>
 
     <footer class="footer full">
         <p>&copy; 2025 Meme Generator. All rights reserved.</p>
     </footer>
 
-    <script src="main.js"></script>
     <script src="utils.js"></script>
-
-    <script src="meme.controller.js"></script>
-    <script src="meme.service.js"></script>
-
+    
+    <script src="upload.service.js"></script>
+    <script src="memeEditor.service.js"></script>
+    <script src="gallery.service.js"></script>
+    
+    <script src="memeEditor.controller.js"></script>
+    <script src="gallery.controller.js"></script>
+    
+    <script src="main.js"></script>
 </body>
 </html>
